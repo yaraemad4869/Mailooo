@@ -1,4 +1,4 @@
-﻿using Mailo.Data;
+using Mailo.Data;
 using Mailo.Data.Enums;
 using Mailo.IRepo;
 using Mailo.Models;
@@ -186,11 +186,18 @@ namespace Mailo.Controllers
             if (ModelState.IsValid)
             {
                 order.OrderStatus = os;
-                order.Payment.PaymentStatus=ps;
+                if (os == OrderStatus.Delivered)
+                {
+                    order.Payment.PaymentStatus = PaymentStatus.Paid;
+                }
+                else
+                {
+                    order.Payment.PaymentStatus = ps;
+                }
                 _unitOfWork.orders.Update(order);
                 TempData["Success"] = "Order Has Been Updated Successfully";
                 return RedirectToAction("ViewRequiredOrders");
-                
+
             }
             return View(order);
         }
