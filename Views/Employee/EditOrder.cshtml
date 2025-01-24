@@ -1,4 +1,4 @@
-﻿@model Order
+@model Order
 @using Mailo.Data.Enums;
 @{
     ViewData["Title"] = "Edit Order Status";
@@ -23,18 +23,9 @@
                         }
                     }
                 </select>
-                <span asp-validation-for="Payment.PaymentStatus" class="text-danger"></span>
+                <span asp-validation-for="OrderStatus" class="text-danger"></span>
                 </div>
-            <div class="form-group mb-3">
-                <label asp-for="Payment.PaymentStatus" class="control-label"></label>
-                <select asp-for="Payment.PaymentStatus" name="ps" asp-route-ps="Payment.PaymentStatus" class="form-control">
-                    @foreach (var paymentStatus in Enum.GetValues(typeof(PaymentStatus)))
-                    {
-                        <option asp-for="Payment.PaymentStatus" class="form-check-input" value="@paymentStatus" id="@paymentStatus.ToString()">@paymentStatus.ToString()</option>
-                    }
-                </select>
-                <span asp-validation-for="Payment.PaymentStatus" class="text-danger"></span>
-            </div>
+            
             <div class="form-group mb-3">
                 <input type="submit" value="Save" class="btn btn-primary" />
                 <a class="btn btn-outline-primary" asp-action="ViewRequiredOrders">Cancel</a>
