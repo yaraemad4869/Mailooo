@@ -1,4 +1,4 @@
-﻿using Mailo.Data;
+using Mailo.Data;
 using Mailo.IRepo;
 using Mailo.Models;
 using Mailo.Repo;
@@ -109,6 +109,8 @@ namespace Mailo.Controllers
                     TempData["ErrorMessage"] = "Product not found.";
 
                 }
+                return RedirectToAction("Index");
+
             }
             return RedirectToAction("Login", "Account");
 
